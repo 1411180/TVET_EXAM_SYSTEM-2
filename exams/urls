@@ -1,0 +1,8 @@
+from django.urls import path
+from .views import add_department, mark_exam
+
+urlpatterns = [
+    path('add_department/', add_department, name='add_department'),
+    path('mark_exam/<int:exam_id>/', mark_exam, name='mark_exam'),
+    # Add other URLs for classes, units, and exams
+]

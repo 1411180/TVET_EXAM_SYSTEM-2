@@ -1,0 +1,27 @@
+<h2>{{ exam.unit.name }} - {{ exam.id }} Exam</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Answers</button>
+</form>
+
+{% extends 'base.html' %}
+
+{% block title %}Exam - {{ exam.unit.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{ exam.unit.name }} Exam</h2>
+    </div>
+    <div class="card-body">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Answers</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

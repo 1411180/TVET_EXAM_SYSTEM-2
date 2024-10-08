@@ -1,0 +1,58 @@
+<h2>{{ request.user.username }}'s Exam Portfolio</h2>
+<table>
+    <tr>
+        <th>Exam</th>
+        <th>Result</th>
+    </tr>
+    {% for portfolio in portfolios %}
+    <tr>
+        <td>{{ portfolio.exam.unit.name }}</td>
+        <td>{{ portfolio.result }}%</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% extends 'base.html' %}
+
+{% block title %}My Portfolio{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>My Portfolio</h2>
+        <div class="list-group">
+            {% for portfolio in portfolios %}
+            <a href="{% url 'results' portfolio.exam.id %}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ portfolio.exam.unit.name }}</h5>
+                    <small>Result: {{ portfolio.result }}%</small>
+                </div>
+                <small>Exam for {{ portfolio.exam.unit.class_instance.name }}</small>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Results</h2>
+        <table class="table table-striped">
+            <!-- Table content -->
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3>Exam Info</h3>
+        <p>Exam Date: {{ exam.date }}</p>
+        <p>Total Marks: 100</p>
+    </div>
+</div>
+
+{% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}

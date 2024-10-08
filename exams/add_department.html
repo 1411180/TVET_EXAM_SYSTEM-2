@@ -1,0 +1,6 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="name">Department Name:</label>
+    <input type="text" name="name" required>
+    <button type="submit">Add Department</button>
+</form>
